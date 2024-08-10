@@ -148,6 +148,37 @@ openApiGenerate {
 			}
 		}
 	}
+
+	tasks.register('Swapi-dev-models', GenerateTask) {
+		inputSpec.set("$projectDir/src/main/resources/swapi-dev-openapi/swapi-dev-models.yml")
+		outputDir = "$projectDir/build/generated/swapi-dev/models"
+
+		generatorName.set("spring")
+		library = 'spring-boot'
+		generateAliasAsModel = true
+		generateApiDocumentation = true
+		generateApiTests = false
+		modelPackage.set('com.diverger.starwars.domain')
+		configOptions.set([
+				documentationProvider: "none",
+				skipDefaultInterface: "true",
+				interfaceOnly       : "true",
+				useTags             : "true"
+		])
+
+		doFirst {
+			delete "$projectDir/src/main/java/com/diverger/starwars/domain"
+		}
+
+		doLast{
+			copy {
+				from "$projectDir/build/generated/swapi-dev/models/src/main/java/com/diverger/starwars/domain"
+				into "$projectDir/src/main/java/com/diverger/starwars/domain"
+				include '**/*'
+			}
+		}
+	}
+
 }
 
 tasks.named('test') {
@@ -157,7 +188,8 @@ tasks.named('test') {
 if (!project.hasProperty('noapibuild')) {
 	tasks.compileJava.dependsOn([
 			"StarWarsServiceAPI",
-			"StarWarsServiceModel"
+			"StarWarsServiceModel",
+			"Swapi-dev-models"
 	])
 }
 

@@ -23,19 +23,6 @@ Technical Decisions:
     HATEOAS: Not required
 
 
-API Specification:
-==================
-
-    http://{host}:{port}/swapi-proxy/person-info?name=<search-string>
-	http://{host}:{port}/swapi-proxy/person-info?name=Luke%20Skywalker
-
-
-Model:
-======
-
-    XXXXXXXXXXXXX
-
-
 SWAPI:
 ======
 
@@ -50,13 +37,27 @@ Resources:
 	https://swapi.dev/api/people/{id}
 	https://swapi.dev/api/people/2
 
-
 	https://swapi.dev/api/planets/{id}
 	https://swapi.dev/api/planets/3
 
-
 	https://swapi.dev/api/starships/{id}
 	https://swapi.dev/api/starships/9/
+
+    "people": "https://swapi.dev/api/people/", 
+    "planets": "https://swapi.dev/api/planets/", 
+    "films": "https://swapi.dev/api/films/", 
+    "species": "https://swapi.dev/api/species/", 
+    "vehicles": "https://swapi.dev/api/vehicles/", 
+    "starships": "https://swapi.dev/api/starships/"
+
+    http://{host}:{port}/swapi-proxy/person-info?name=<search-string>
+	http://{host}:{port}/swapi-proxy/person-info?name=Luke%20Skywalker
+
+
+Models:
+======
+
+    XXXXXXXXXXXXX
 
 
 Search:
