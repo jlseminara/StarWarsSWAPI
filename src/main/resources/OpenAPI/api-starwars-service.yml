@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: StarWars
+  description: Backend for StarWars Service.
+  version: 1.0.0
+
+paths:
+  /swapi-proxy/person-info:
+    get:
+      summary: Get the specified string with Person name
+      description: xxxx
+      tags:
+        - StarWarsService
+      operationId: getPersonInformation
+      parameters:
+        - in: query
+          name: name
+          description: xxxx
+          required: true
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: The position of a portfolio, including all their assets and LGT sustainability rating.
+          content:
+            application/json:
+              schema:
+                $ref: 'model-starwars-service.yml#/components/schemas/StarWarsPersonInformation'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: 'model-starwars-service.yml#/components/schemas/ErrorResponse'
+        404:
+          description: Person not found
+          content:
+            application/json:
+              schema:
+                $ref: 'model-starwars-service.yml#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: 'model-starwars-service.yml#/components/schemas/ErrorResponse'
+        default:
+          description: Default error response
+          content:
+              application/json:
+                schema:
+                  $ref: 'model-starwars-service.yml#/components/schemas/ErrorResponse'

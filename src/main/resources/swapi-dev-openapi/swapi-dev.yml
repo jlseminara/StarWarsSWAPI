@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  title: swapi.dev models
+  description: Models specification for https://swapi.dev/
+  version: 1.0.0
+
+paths: { }
+
+components:
+  schemas:
+    Allocation:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: number
+          format: double

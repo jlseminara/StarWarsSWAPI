@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: StarWars
+  description: Backend for StarWars Service.
+  version: 1.0.0
+
+paths: {}
+
+components:
+  schemas:
+    StarWarsPersonInformation:
+      type: object
+      properties:
+        name:
+          type: string
+        birth_year:
+          type: string
+        gender:
+          type: string
+        planet_name:
+          type: string
+        fastest_vehicle_driven:
+          type: string
+        films:
+          type: array
+          items:
+            $ref: '#/components/schemas/Film'
+
+    Film:
+      type: object
+      properties:
+        name:
+          type: string
+        release_date:
+          type: string
+          format: date
+
+    ErrorResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        detail:
+          type: string

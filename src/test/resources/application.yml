@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: starwars
+  cloud:
+    openfeign:
+      client:
+        swapi: https://swapi.dev
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    path: /swagger-ui/swagger-config
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 60000
+        readTimeout: 10000
