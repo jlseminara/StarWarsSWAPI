@@ -57,7 +57,9 @@ Resources:
 Models:
 ======
 
-    XXXXXXXXXXXXX
+    Endpoint to get the schemas not available https://swapi.dev/api/<resource>/people/schema/
+    
+    Derived from endpoint responses and compared against: https://github.com/phalt/swapi/tree/master/resources/schemas 
 
 
 Search:

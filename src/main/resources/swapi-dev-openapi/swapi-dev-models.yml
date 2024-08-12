@@ -8,6 +8,24 @@ paths: { }
 
 components:
   schemas:
+
+    PeopleSearchResult:
+      description: List of people returned
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+        previous:
+          type: string
+          format: uri
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/People'
+
     People:
       description: A person within the Star Wars universe
       type: object
@@ -38,6 +56,7 @@ components:
           description: The gender of this person (if known).
         homeworld:
           type: string
+          format: uri
           description: The url of the planet resource that this person was born on.
         films:
           type: array
@@ -76,7 +95,24 @@ components:
           format: date-time
           description: the ISO 8601 date format of the time that this resource was edited.
 
-    Starship:
+    VehicleSearchResult:
+      description: List of vehicles returned
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+        previous:
+          type: string
+          format: uri
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vehicle'
+
+    Vehicle:
       description: A vehicle.
       type: object
       properties:
@@ -141,6 +177,23 @@ components:
           format: date-time
           description: the ISO 8601 date format of the time that this resource was edited.
 
+    FilmsSearchResult:
+      description: List of films returned
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+        previous:
+          type: string
+          format: uri
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Film'
+
     Film:
       description: A Star Wars film
       type: object
@@ -162,7 +215,6 @@ components:
           description: The producer(s) of this film.
         release_date:
           type: string
-          format: date
           description: The release date at original creator country.
         characters:
           type: array
@@ -207,4 +259,58 @@ components:
           format: date-time
           description: the ISO 8601 date format of the time that this resource was edited.
 
-
+    Planet:
+      description: A planet.
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of this planet.
+        diameter:
+          type: string
+          description: The diameter of this planet in kilometers.
+        rotation_period:
+          type: string
+          description: The number of standard hours it takes for this planet to complete a single rotation on its axis.
+        orbital_period:
+          type: string
+          description: The number of standard days it takes for this planet to complete a single orbit of its local star.
+        gravity:
+          type: string
+          description: A number denoting the gravity of this planet. Where 1 is normal.
+        population:
+          type: string
+          description: The average populationof sentient beings inhabiting this planet.
+        climate:
+          type: string
+          description: The climate of this planet. Comma-seperated if diverse.
+        terrain:
+          type: string
+          description: the terrain of this planet. Comma-seperated if diverse.
+        surface_water:
+          type: string
+          description: The percentage of the planet surface that is naturally occuring water or bodies of water.
+        films:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: An array of Film URL Resources that this planet has appeared in.
+        residents:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: An array of People URL Resources that live on this planet.
+        url:
+          type: string
+          format: uri
+          description: The hypermedia URL of this resource.
+        created:
+          type: string
+          format: date-time
+          description: The ISO 8601 date format of the time that this resource was created.
+        edited:
+          type: string
+          format: date-time
+          description: the ISO 8601 date format of the time that this resource was edited.

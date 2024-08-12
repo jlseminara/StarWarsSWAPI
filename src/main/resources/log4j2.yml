@@ -9,6 +9,7 @@ Configuration:
           PatternMatch:
             - key: "INFO" # No file and line printing on info for performance reasons
               pattern: '%date{yyyy-MM-dd HH:mm:ss.MS} %level [%threadName] %c{1.} - %msg%n'
+
   Loggers:
     Root:
       level: info

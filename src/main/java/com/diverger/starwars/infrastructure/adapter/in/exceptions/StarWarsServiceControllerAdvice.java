@@ -1,4 +1,4 @@
-package com.diverger.starwars.infrastructure.adapter.in.exception;
+package com.diverger.starwars.infrastructure.adapter.in.exceptions;
 
 import com.diverger.starwars.infrastructure.adapter.in.dto.ErrorResponse;
 import feign.FeignException;
@@ -19,7 +19,17 @@ public class StarWarsServiceControllerAdvice {
                 .title("Error connection to SWAPI server")
                 .detail(ex.getMessage());
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(body);
+        return ResponseEntity.status(ex.status()).body(body);
+    }
+
+    @ExceptionHandler(DataInconsistencyException.class)
+    public ResponseEntity<ErrorResponse> handleFeignException(DataInconsistencyException ex) {
+        var body = new ErrorResponse()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .title("Error processing data")
+                .detail(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(body);
     }
 
     @ExceptionHandler(RuntimeException.class)
@@ -29,7 +39,7 @@ public class StarWarsServiceControllerAdvice {
                 .title("Internal Error. Unhandled error")
                 .detail(ex.getMessage());
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(body);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(body);
     }
 
 }

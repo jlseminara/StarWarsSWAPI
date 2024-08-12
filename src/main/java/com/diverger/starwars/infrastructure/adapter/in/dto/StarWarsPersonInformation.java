@@ -2,7 +2,7 @@ package com.diverger.starwars.infrastructure.adapter.in.dto;
 
 import java.net.URI;
 import java.util.Objects;
-import com.diverger.starwars.infrastructure.adapter.in.dto.Film;
+import com.diverger.starwars.infrastructure.adapter.in.dto.FilmData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * StarWarsPersonInformation
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-10T17:45:11.436542600+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-12T17:38:28.869869+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class StarWarsPersonInformation {
 
   private String name;
@@ -35,7 +35,7 @@ public class StarWarsPersonInformation {
   private String fastestVehicleDriven;
 
   @Valid
-  private List<@Valid Film> films = new ArrayList<>();
+  private List<@Valid FilmData> films = new ArrayList<>();
 
   public StarWarsPersonInformation name(String name) {
     this.name = name;
@@ -132,12 +132,12 @@ public class StarWarsPersonInformation {
     this.fastestVehicleDriven = fastestVehicleDriven;
   }
 
-  public StarWarsPersonInformation films(List<@Valid Film> films) {
+  public StarWarsPersonInformation films(List<@Valid FilmData> films) {
     this.films = films;
     return this;
   }
 
-  public StarWarsPersonInformation addFilmsItem(Film filmsItem) {
+  public StarWarsPersonInformation addFilmsItem(FilmData filmsItem) {
     if (this.films == null) {
       this.films = new ArrayList<>();
     }
@@ -151,11 +151,11 @@ public class StarWarsPersonInformation {
    */
   @Valid 
   @JsonProperty("films")
-  public List<@Valid Film> getFilms() {
+  public List<@Valid FilmData> getFilms() {
     return films;
   }
 
-  public void setFilms(List<@Valid Film> films) {
+  public void setFilms(List<@Valid FilmData> films) {
     this.films = films;
   }
 

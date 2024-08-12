@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * A person within the Star Wars universe
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-10T17:45:11.554796700+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-12T17:36:19.144500400+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class People {
 
   private String name;
@@ -42,7 +42,7 @@ public class People {
 
   private String gender;
 
-  private String homeworld;
+  private URI homeworld;
 
   @Valid
   private List<URI> films = new ArrayList<>();
@@ -216,7 +216,7 @@ public class People {
     this.gender = gender;
   }
 
-  public People homeworld(String homeworld) {
+  public People homeworld(URI homeworld) {
     this.homeworld = homeworld;
     return this;
   }
@@ -225,13 +225,13 @@ public class People {
    * The url of the planet resource that this person was born on.
    * @return homeworld
    */
-  
+  @Valid 
   @JsonProperty("homeworld")
-  public String getHomeworld() {
+  public URI getHomeworld() {
     return homeworld;
   }
 
-  public void setHomeworld(String homeworld) {
+  public void setHomeworld(URI homeworld) {
     this.homeworld = homeworld;
   }
 

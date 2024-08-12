@@ -4,8 +4,6 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import java.time.LocalDate;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -16,18 +14,17 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Film
+ * FilmData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-10T17:45:11.436542600+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
-public class Film {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-12T17:38:28.869869+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+public class FilmData {
 
   private String name;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate releaseDate;
+  private String releaseDate;
 
-  public Film name(String name) {
+  public FilmData name(String name) {
     this.name = name;
     return this;
   }
@@ -46,7 +43,7 @@ public class Film {
     this.name = name;
   }
 
-  public Film releaseDate(LocalDate releaseDate) {
+  public FilmData releaseDate(String releaseDate) {
     this.releaseDate = releaseDate;
     return this;
   }
@@ -55,13 +52,13 @@ public class Film {
    * Get releaseDate
    * @return releaseDate
    */
-  @Valid 
+  
   @JsonProperty("release_date")
-  public LocalDate getReleaseDate() {
+  public String getReleaseDate() {
     return releaseDate;
   }
 
-  public void setReleaseDate(LocalDate releaseDate) {
+  public void setReleaseDate(String releaseDate) {
     this.releaseDate = releaseDate;
   }
 
@@ -73,9 +70,9 @@ public class Film {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Film film = (Film) o;
-    return Objects.equals(this.name, film.name) &&
-        Objects.equals(this.releaseDate, film.releaseDate);
+    FilmData filmData = (FilmData) o;
+    return Objects.equals(this.name, filmData.name) &&
+        Objects.equals(this.releaseDate, filmData.releaseDate);
   }
 
   @Override
@@ -86,7 +83,7 @@ public class Film {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Film {\n");
+    sb.append("class FilmData {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    releaseDate: ").append(toIndentedString(releaseDate)).append("\n");
     sb.append("}");

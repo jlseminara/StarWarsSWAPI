@@ -24,16 +24,15 @@ components:
         films:
           type: array
           items:
-            $ref: '#/components/schemas/Film'
+            $ref: '#/components/schemas/FilmData'
 
-    Film:
+    FilmData:
       type: object
       properties:
         name:
           type: string
         release_date:
           type: string
-          format: date
 
     ErrorResponse:
       type: object

@@ -5,7 +5,6 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.net.URI;
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +23,7 @@ import javax.annotation.Generated;
  * A Star Wars film
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-10T17:45:11.554796700+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-12T17:36:19.144500400+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class Film {
 
   private String title;
@@ -37,8 +36,7 @@ public class Film {
 
   private String producer;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate releaseDate;
+  private String releaseDate;
 
   @Valid
   private List<URI> characters = new ArrayList<>();
@@ -158,7 +156,7 @@ public class Film {
     this.producer = producer;
   }
 
-  public Film releaseDate(LocalDate releaseDate) {
+  public Film releaseDate(String releaseDate) {
     this.releaseDate = releaseDate;
     return this;
   }
@@ -167,13 +165,13 @@ public class Film {
    * The release date at original creator country.
    * @return releaseDate
    */
-  @Valid 
+  
   @JsonProperty("release_date")
-  public LocalDate getReleaseDate() {
+  public String getReleaseDate() {
     return releaseDate;
   }
 
-  public void setReleaseDate(LocalDate releaseDate) {
+  public void setReleaseDate(String releaseDate) {
     this.releaseDate = releaseDate;
   }
 

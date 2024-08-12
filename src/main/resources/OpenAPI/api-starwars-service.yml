@@ -7,15 +7,15 @@ info:
 paths:
   /swapi-proxy/person-info:
     get:
-      summary: Get the specified string with Person name
-      description: xxxx
+      summary: Obtain information about the person in star wars universe.
+      description: Get the information about the person given the name
       tags:
         - StarWarsService
       operationId: getPersonInformation
       parameters:
         - in: query
           name: name
-          description: xxxx
+          description: Search string for the person's name
           required: true
           schema:
             type: string

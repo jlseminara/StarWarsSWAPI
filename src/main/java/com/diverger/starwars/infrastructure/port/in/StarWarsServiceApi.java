@@ -33,16 +33,16 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-10T17:45:11.308124+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-12T17:38:28.786092900+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 @Validated
 @Tag(name = "StarWarsService", description = "the StarWarsService API")
 public interface StarWarsServiceApi {
 
     /**
-     * GET /swapi-proxy/person-info : Get the specified string with Person name
-     * xxxx
+     * GET /swapi-proxy/person-info : Obtain information about the person in star wars universe.
+     * Get the information about the person given the name
      *
-     * @param name xxxx (required)
+     * @param name Search string for the person&#39;s name (required)
      * @return The position of a portfolio, including all their assets and LGT sustainability rating. (status code 200)
      *         or Bad request (status code 400)
      *         or Person not found (status code 404)
@@ -51,8 +51,8 @@ public interface StarWarsServiceApi {
      */
     @Operation(
         operationId = "getPersonInformation",
-        summary = "Get the specified string with Person name",
-        description = "xxxx",
+        summary = "Obtain information about the person in star wars universe.",
+        description = "Get the information about the person given the name",
         tags = { "StarWarsService" },
         responses = {
             @ApiResponse(responseCode = "200", description = "The position of a portfolio, including all their assets and LGT sustainability rating.", content = {
@@ -79,7 +79,7 @@ public interface StarWarsServiceApi {
     )
     
     ResponseEntity<StarWarsPersonInformation> getPersonInformation(
-        @NotNull @Parameter(name = "name", description = "xxxx", required = true, in = ParameterIn.QUERY) @Valid @RequestParam(value = "name", required = true) String name
+        @NotNull @Parameter(name = "name", description = "Search string for the person's name", required = true, in = ParameterIn.QUERY) @Valid @RequestParam(value = "name", required = true) String name
     );
 
 }

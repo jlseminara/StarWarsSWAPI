@@ -23,8 +23,8 @@ import javax.annotation.Generated;
  * A vehicle.
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-10T17:45:11.554796700+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
-public class Starship {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-12T17:36:19.144500400+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+public class Vehicle {
 
   private String name;
 
@@ -66,7 +66,7 @@ public class Starship {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime edited;
 
-  public Starship name(String name) {
+  public Vehicle name(String name) {
     this.name = name;
     return this;
   }
@@ -85,7 +85,7 @@ public class Starship {
     this.name = name;
   }
 
-  public Starship model(String model) {
+  public Vehicle model(String model) {
     this.model = model;
     return this;
   }
@@ -104,7 +104,7 @@ public class Starship {
     this.model = model;
   }
 
-  public Starship manufacturer(String manufacturer) {
+  public Vehicle manufacturer(String manufacturer) {
     this.manufacturer = manufacturer;
     return this;
   }
@@ -123,7 +123,7 @@ public class Starship {
     this.manufacturer = manufacturer;
   }
 
-  public Starship costInCredits(String costInCredits) {
+  public Vehicle costInCredits(String costInCredits) {
     this.costInCredits = costInCredits;
     return this;
   }
@@ -142,7 +142,7 @@ public class Starship {
     this.costInCredits = costInCredits;
   }
 
-  public Starship length(String length) {
+  public Vehicle length(String length) {
     this.length = length;
     return this;
   }
@@ -161,7 +161,7 @@ public class Starship {
     this.length = length;
   }
 
-  public Starship crew(String crew) {
+  public Vehicle crew(String crew) {
     this.crew = crew;
     return this;
   }
@@ -180,7 +180,7 @@ public class Starship {
     this.crew = crew;
   }
 
-  public Starship passengers(String passengers) {
+  public Vehicle passengers(String passengers) {
     this.passengers = passengers;
     return this;
   }
@@ -199,7 +199,7 @@ public class Starship {
     this.passengers = passengers;
   }
 
-  public Starship maxAtmospheringSpeed(String maxAtmospheringSpeed) {
+  public Vehicle maxAtmospheringSpeed(String maxAtmospheringSpeed) {
     this.maxAtmospheringSpeed = maxAtmospheringSpeed;
     return this;
   }
@@ -218,7 +218,7 @@ public class Starship {
     this.maxAtmospheringSpeed = maxAtmospheringSpeed;
   }
 
-  public Starship cargoCapacity(String cargoCapacity) {
+  public Vehicle cargoCapacity(String cargoCapacity) {
     this.cargoCapacity = cargoCapacity;
     return this;
   }
@@ -237,7 +237,7 @@ public class Starship {
     this.cargoCapacity = cargoCapacity;
   }
 
-  public Starship consumables(String consumables) {
+  public Vehicle consumables(String consumables) {
     this.consumables = consumables;
     return this;
   }
@@ -256,7 +256,7 @@ public class Starship {
     this.consumables = consumables;
   }
 
-  public Starship hyperdriveRating(String hyperdriveRating) {
+  public Vehicle hyperdriveRating(String hyperdriveRating) {
     this.hyperdriveRating = hyperdriveRating;
     return this;
   }
@@ -275,7 +275,7 @@ public class Starship {
     this.hyperdriveRating = hyperdriveRating;
   }
 
-  public Starship MGLT(String MGLT) {
+  public Vehicle MGLT(String MGLT) {
     this.MGLT = MGLT;
     return this;
   }
@@ -294,7 +294,7 @@ public class Starship {
     this.MGLT = MGLT;
   }
 
-  public Starship starshipClassDoubleQuote(String starshipClassDoubleQuote) {
+  public Vehicle starshipClassDoubleQuote(String starshipClassDoubleQuote) {
     this.starshipClassDoubleQuote = starshipClassDoubleQuote;
     return this;
   }
@@ -313,12 +313,12 @@ public class Starship {
     this.starshipClassDoubleQuote = starshipClassDoubleQuote;
   }
 
-  public Starship films(List<URI> films) {
+  public Vehicle films(List<URI> films) {
     this.films = films;
     return this;
   }
 
-  public Starship addFilmsItem(URI filmsItem) {
+  public Vehicle addFilmsItem(URI filmsItem) {
     if (this.films == null) {
       this.films = new ArrayList<>();
     }
@@ -340,12 +340,12 @@ public class Starship {
     this.films = films;
   }
 
-  public Starship pilots(List<URI> pilots) {
+  public Vehicle pilots(List<URI> pilots) {
     this.pilots = pilots;
     return this;
   }
 
-  public Starship addPilotsItem(URI pilotsItem) {
+  public Vehicle addPilotsItem(URI pilotsItem) {
     if (this.pilots == null) {
       this.pilots = new ArrayList<>();
     }
@@ -367,7 +367,7 @@ public class Starship {
     this.pilots = pilots;
   }
 
-  public Starship url(URI url) {
+  public Vehicle url(URI url) {
     this.url = url;
     return this;
   }
@@ -386,7 +386,7 @@ public class Starship {
     this.url = url;
   }
 
-  public Starship created(OffsetDateTime created) {
+  public Vehicle created(OffsetDateTime created) {
     this.created = created;
     return this;
   }
@@ -405,7 +405,7 @@ public class Starship {
     this.created = created;
   }
 
-  public Starship edited(OffsetDateTime edited) {
+  public Vehicle edited(OffsetDateTime edited) {
     this.edited = edited;
     return this;
   }
@@ -432,25 +432,25 @@ public class Starship {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Starship starship = (Starship) o;
-    return Objects.equals(this.name, starship.name) &&
-        Objects.equals(this.model, starship.model) &&
-        Objects.equals(this.manufacturer, starship.manufacturer) &&
-        Objects.equals(this.costInCredits, starship.costInCredits) &&
-        Objects.equals(this.length, starship.length) &&
-        Objects.equals(this.crew, starship.crew) &&
-        Objects.equals(this.passengers, starship.passengers) &&
-        Objects.equals(this.maxAtmospheringSpeed, starship.maxAtmospheringSpeed) &&
-        Objects.equals(this.cargoCapacity, starship.cargoCapacity) &&
-        Objects.equals(this.consumables, starship.consumables) &&
-        Objects.equals(this.hyperdriveRating, starship.hyperdriveRating) &&
-        Objects.equals(this.MGLT, starship.MGLT) &&
-        Objects.equals(this.starshipClassDoubleQuote, starship.starshipClassDoubleQuote) &&
-        Objects.equals(this.films, starship.films) &&
-        Objects.equals(this.pilots, starship.pilots) &&
-        Objects.equals(this.url, starship.url) &&
-        Objects.equals(this.created, starship.created) &&
-        Objects.equals(this.edited, starship.edited);
+    Vehicle vehicle = (Vehicle) o;
+    return Objects.equals(this.name, vehicle.name) &&
+        Objects.equals(this.model, vehicle.model) &&
+        Objects.equals(this.manufacturer, vehicle.manufacturer) &&
+        Objects.equals(this.costInCredits, vehicle.costInCredits) &&
+        Objects.equals(this.length, vehicle.length) &&
+        Objects.equals(this.crew, vehicle.crew) &&
+        Objects.equals(this.passengers, vehicle.passengers) &&
+        Objects.equals(this.maxAtmospheringSpeed, vehicle.maxAtmospheringSpeed) &&
+        Objects.equals(this.cargoCapacity, vehicle.cargoCapacity) &&
+        Objects.equals(this.consumables, vehicle.consumables) &&
+        Objects.equals(this.hyperdriveRating, vehicle.hyperdriveRating) &&
+        Objects.equals(this.MGLT, vehicle.MGLT) &&
+        Objects.equals(this.starshipClassDoubleQuote, vehicle.starshipClassDoubleQuote) &&
+        Objects.equals(this.films, vehicle.films) &&
+        Objects.equals(this.pilots, vehicle.pilots) &&
+        Objects.equals(this.url, vehicle.url) &&
+        Objects.equals(this.created, vehicle.created) &&
+        Objects.equals(this.edited, vehicle.edited);
   }
 
   @Override
@@ -461,7 +461,7 @@ public class Starship {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Starship {\n");
+    sb.append("class Vehicle {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    manufacturer: ").append(toIndentedString(manufacturer)).append("\n");
