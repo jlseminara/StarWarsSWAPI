@@ -17,6 +17,13 @@ springdoc:
   api-docs:
     path: /swagger-ui/swagger-config
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, caches
+
 feign:
   client:
     config:

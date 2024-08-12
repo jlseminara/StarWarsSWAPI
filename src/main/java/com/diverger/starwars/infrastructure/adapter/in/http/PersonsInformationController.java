@@ -1,4 +1,4 @@
-package com.diverger.starwars.infrastructure.adapter.in;
+package com.diverger.starwars.infrastructure.adapter.in.http;
 
 import com.diverger.starwars.infrastructure.adapter.in.dto.StarWarsPersonInformation;
 import com.diverger.starwars.infrastructure.port.in.StarWarsServiceApi;
@@ -24,7 +24,7 @@ public class PersonsInformationController implements StarWarsServiceApi {
     @CircuitBreaker(name = "CircuitBreakerGeneral")
     @Override
     public ResponseEntity<StarWarsPersonInformation> getPersonInformation(String name) {
-        log.info("Request to get person information, name={}", name);
+        log.info("PersonsInformationController::getPersonInformation - Request to get person information, name={}", name);
 
         return ResponseEntity.ok(personInformationUseCase.getPersonInformation(name));
     }

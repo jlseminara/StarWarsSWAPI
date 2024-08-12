@@ -1,4 +1,4 @@
-package com.diverger.starwars.infrastructure.adapter.out;
+package com.diverger.starwars.infrastructure.adapter.out.http;
 
 import com.diverger.starwars.domain.Film;
 import com.diverger.starwars.domain.FilmsSearchResult;

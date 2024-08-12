@@ -61,7 +61,7 @@ dependencies {
 
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '3.3.2'
 	implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '3.1.8'
-	implementation group: 'io.github.resilience4j', name: 'resilience4j-spring-boot2', version: '2.2.0'
+	implementation group: 'io.github.resilience4j', name: 'resilience4j-spring-boot3', version: '2.2.0'
 }
 
 

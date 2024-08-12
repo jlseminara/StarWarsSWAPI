@@ -2,7 +2,7 @@ package com.diverger.starwars.usecase;
 
 import com.diverger.starwars.domain.People;
 import com.diverger.starwars.domain.PeopleSearchResult;
-import com.diverger.starwars.infrastructure.adapter.in.cache.SwapiDataService;
+import com.diverger.starwars.infrastructure.adapter.out.cache.SwapiDataService;
 import com.diverger.starwars.infrastructure.adapter.in.dto.StarWarsPersonInformation;
 import com.diverger.starwars.infrastructure.adapter.in.exceptions.PersonNotFoundException;
 import com.diverger.starwars.usecase.interfaces.PersonInformationUseCaseApi;
@@ -36,7 +36,7 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
         PeopleSearchResult findPersonResult = swapiDataService.findPerson(name);
 
         if(findPersonResult==null || findPersonResult.getCount()==0)
-            throw new PersonNotFoundException("Person cannot be found");
+            throw new PersonNotFoundException("Person with name '" +name+ "' cannot be found");
 
         //No specifications about what to do when receiving more that one result
         People personFound = findPersonResult.getResults().getFirst();

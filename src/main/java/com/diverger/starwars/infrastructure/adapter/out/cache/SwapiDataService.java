@@ -1,11 +1,15 @@
-package com.diverger.starwars.infrastructure.adapter.in.cache;
+package com.diverger.starwars.infrastructure.adapter.out.cache;
 
 import com.diverger.starwars.domain.Film;
-import com.diverger.starwars.domain.People;
 import com.diverger.starwars.domain.PeopleSearchResult;
 import com.diverger.starwars.domain.Planet;
 import com.diverger.starwars.domain.Vehicle;
-import com.diverger.starwars.infrastructure.adapter.out.SwapiFeignClient;
+import com.diverger.starwars.infrastructure.adapter.in.exceptions.FilmNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.in.exceptions.PersonNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.in.exceptions.PlanetNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.in.exceptions.VehicleNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.out.http.SwapiFeignClient;
+import com.diverger.starwars.infrastructure.port.out.cache.SwapiDataApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,10 +20,9 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 @Slf4j
 @Service
-public class SwapiDataService {
+public class SwapiDataService implements SwapiDataApi {
     private final SwapiFeignClient swapiFeignClient;
     private final RestClient restClient;
 
@@ -31,27 +34,61 @@ public class SwapiDataService {
 
     @Cacheable(cacheNames="FILMS", unless="#result == null")
     public Film getFilmInformation(URI filmUri) {
-        return restClient.get().uri(filmUri).retrieve().toEntity(Film.class).getBody();
+        Film result;
+
+        try {
+            result = restClient.get().uri(filmUri).retrieve().toEntity(Film.class).getBody();
+        } catch (RuntimeException ex) {
+            log.error("Error fetching film message={}", ex.getMessage());
+            throw new FilmNotFoundException(ex.getMessage());
+        }
+
+        return result;
     }
 
     @Cacheable(cacheNames="PLANETS", unless="#result == null")
     public String getPlanetName(URI planetResource) {
-        var planetResult = restClient.get().uri(planetResource).retrieve().toEntity(Planet.class).getBody();
+        Planet result;
 
-        if(planetResult==null || !planetResult.getName().isBlank())
+        try {
+            result = restClient.get().uri(planetResource).retrieve().toEntity(Planet.class).getBody();
+        } catch (RuntimeException ex) {
+            log.error("Error fetching planet message={}", ex.getMessage());
+            throw new PlanetNotFoundException(ex.getMessage());
+        }
+
+        if(result==null || result.getName().isBlank())
             return null;
         else
-            return planetResult.getName();
+            return result.getName();
     }
 
     @Cacheable(cacheNames="VEHICLES", unless="#result == null")
     public Vehicle getVehicleInformation(URI vehicleUri) {
-        return restClient.get().uri(vehicleUri).retrieve().toEntity(Vehicle.class).getBody();
+        Vehicle result;
+
+        try {
+            result = restClient.get().uri(vehicleUri).retrieve().toEntity(Vehicle.class).getBody();
+        } catch (RuntimeException ex) {
+            log.error("Error fetching person message={}", ex.getMessage());
+            throw new VehicleNotFoundException(ex.getMessage());
+        }
+
+        return result;
     }
 
     @Cacheable(cacheNames="PEOPLE", unless="#result == null")
     public PeopleSearchResult findPerson(String name) {
-        return swapiFeignClient.findPerson(name);
+        PeopleSearchResult result;
+
+        try {
+            result = swapiFeignClient.findPerson(name);
+        } catch (RuntimeException ex) {
+            log.error("Error fetching person name={}, message={}", name, ex.getMessage());
+            throw new PersonNotFoundException(ex.getMessage());
+        }
+
+        return result;
     }
 
 
