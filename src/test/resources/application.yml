@@ -14,8 +14,18 @@ spring:
       spec: maximumSize=500,expireAfterAccess=5m,initialCapacity=50
 
 springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/
   api-docs:
-    path: /swagger-ui/swagger-config
+    enabled: true
+    path: /docs/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, caches
 
 feign:
   client:
@@ -36,3 +46,8 @@ resilience4j:
         sliding-window-size: 10
         sliding-window-type: count_based
         registerHealthIndicator: true
+  retry:
+    instances:
+      General:
+        max-attempts: 3
+        wait-duration: 1s

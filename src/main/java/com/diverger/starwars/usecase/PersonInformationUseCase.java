@@ -45,7 +45,9 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
         personInfoResult.setBirthYear(personFound.getBirthYear());
         personInfoResult.setGender(personFound.getGender());
         personInfoResult.setPlanetName(swapiDataService.getPlanetName(personFound.getHomeworld()));
-        personInfoResult.setFastestVehicleDriven(this.getFastestVehicle(personFound.getVehicles()));
+        personInfoResult.setFastestVehicleDriven(this.getFastestMovingThing(personFound.getVehicles(),
+                                    personFound.getStarships()));
+
         personInfoResult.setFilms(this.getFilmsComponent(personFound.getFilms()));
 
         return personInfoResult;
@@ -69,6 +71,53 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
         return filmList;
     }
 
+    private String getFastestMovingThing(List<URI> vehiclesUri, List<URI> starshipsUri) {
+        log.info("PersonInformationUserCase:getFastestMovingThing");
+        Map<String, Double> combinedThings = new HashMap<>();
+
+        var starshipResult = this.getStarshipsInformation(starshipsUri);
+        var vehicleResult = this.getVehiclesInformation(vehiclesUri);
+
+        combinedThings.putAll(starshipResult);
+        combinedThings.putAll(vehicleResult);
+        var fastest = combinedThings.entrySet().stream().max(Map.Entry.comparingByValue()).orElse(null);
+
+        return (fastest == null) ? null : fastest.getKey();
+    }
+
+    private Map<String, Double> getStarshipsInformation(List<URI> starshipUri) {
+        log.info("PersonInformationUserCase:getFastestStarship");
+        Map<String, Double> starshipResult = new HashMap<>();
+
+        if(starshipUri==null)
+            return starshipResult;
+
+        for(URI resource : starshipUri) {
+            var vehicle = swapiDataService.getStarshipInformation(resource);
+            if (vehicle != null)
+                starshipResult.put(vehicle.getName(), Double.parseDouble(vehicle.getMaxAtmospheringSpeed()));
+        }
+
+        return starshipResult;
+    }
+
+    private Map<String, Double> getVehiclesInformation(List<URI> vehiclesUri) {
+        log.info("PersonInformationUserCase:getFastestV");
+        Map<String, Double> vehicleResult = new HashMap<>();
+
+        if(vehiclesUri==null)
+            return vehicleResult;
+
+        for(URI resource : vehiclesUri) {
+            var vehicle = swapiDataService.getVehicleInformation(resource);
+            if (vehicle != null)
+                vehicleResult.put(vehicle.getName(), Double.parseDouble(vehicle.getMaxAtmospheringSpeed()));
+        }
+
+        return vehicleResult;
+    }
+
+    /*
     private String getFastestVehicle(List<URI> vehiclesUri) {
         log.info("PersonInformationUserCase:getFastestVehicle");
         Map<String, Double> mapVehicles = new HashMap<>();
@@ -85,5 +134,6 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
 
         return (fastest == null) ? null : fastest.getKey();
     }
+    */
 
 }

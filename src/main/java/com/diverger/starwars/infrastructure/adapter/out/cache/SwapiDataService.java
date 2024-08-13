@@ -3,10 +3,12 @@ package com.diverger.starwars.infrastructure.adapter.out.cache;
 import com.diverger.starwars.domain.Film;
 import com.diverger.starwars.domain.PeopleSearchResult;
 import com.diverger.starwars.domain.Planet;
+import com.diverger.starwars.domain.Starship;
 import com.diverger.starwars.domain.Vehicle;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.FilmNotFoundException;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.PersonNotFoundException;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.PlanetNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.out.exceptions.StarshipNotFoundException;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.VehicleNotFoundException;
 import com.diverger.starwars.infrastructure.adapter.out.http.SwapiFeignClient;
 import com.diverger.starwars.infrastructure.port.out.cache.SwapiDataApi;
@@ -33,6 +35,7 @@ public class SwapiDataService implements SwapiDataApi {
         this.restClient = RestClient.builder().build();
     }
 
+    @Override
     @Cacheable(cacheNames="FILMS", unless="#result == null")
     @Retry(name = "General")
     public Film getFilmInformation(URI filmUri) {
@@ -48,6 +51,7 @@ public class SwapiDataService implements SwapiDataApi {
         return result;
     }
 
+    @Override
     @Cacheable(cacheNames="PLANETS", unless="#result == null")
     @Retry(name = "General")
     public String getPlanetName(URI planetResource) {
@@ -66,6 +70,7 @@ public class SwapiDataService implements SwapiDataApi {
             return result.getName();
     }
 
+    @Override
     @Cacheable(cacheNames="VEHICLES", unless="#result == null")
     @Retry(name = "General")
     public Vehicle getVehicleInformation(URI vehicleUri) {
@@ -81,6 +86,24 @@ public class SwapiDataService implements SwapiDataApi {
         return result;
     }
 
+    @Override
+    @Cacheable(cacheNames="STARSHIPS", unless="#result == null")
+    @Retry(name = "General")
+    public Starship getStarshipInformation(URI starshipUri) {
+        Starship result;
+
+        try {
+            result = restClient.get().uri(starshipUri).retrieve().toEntity(Starship.class).getBody();
+        } catch (RuntimeException ex) { //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
+            log.error("Error fetching starship message={}", ex.getMessage());
+            throw new StarshipNotFoundException(ex.getMessage());
+        }
+
+        return result;
+    }
+
+
+    @Override
     @Cacheable(cacheNames="PEOPLE", unless="#result == null")
     @Retry(name = "General")
     public PeopleSearchResult findPerson(String name) {

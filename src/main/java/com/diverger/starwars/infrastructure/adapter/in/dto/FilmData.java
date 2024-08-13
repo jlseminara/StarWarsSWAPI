@@ -17,7 +17,7 @@ import javax.annotation.Generated;
  * FilmData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-13T12:29:12.355817100+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-13T16:17:10.281697500+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class FilmData {
 
   private String name;

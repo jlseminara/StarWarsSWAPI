@@ -4,5 +4,6 @@ public enum CacheNames {
     PEOPLE,
     PLANETS,
     FILMS,
-    VEHICLES;
+    VEHICLES,
+    STARSHIPS;
 }

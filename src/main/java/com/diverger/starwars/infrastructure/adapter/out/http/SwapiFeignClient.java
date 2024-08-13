@@ -5,6 +5,8 @@ import com.diverger.starwars.domain.FilmsSearchResult;
 import com.diverger.starwars.domain.People;
 import com.diverger.starwars.domain.PeopleSearchResult;
 import com.diverger.starwars.domain.Planet;
+import com.diverger.starwars.domain.Starship;
+import com.diverger.starwars.domain.StarshipSearchResult;
 import com.diverger.starwars.domain.Vehicle;
 import com.diverger.starwars.domain.VehicleSearchResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -36,4 +38,10 @@ public interface SwapiFeignClient {
 
     @GetMapping(value = "/planets/{planetId}")
     Planet getPlanet(@RequestParam(name = "planetId") String planetId);
+
+    @GetMapping(value = "/starships/{starshipId}")
+    Starship getStarship(@PathVariable(name = "starshipId") String starshipId);
+
+    @GetMapping(value = "/starships/")
+    StarshipSearchResult findStarship(@PathVariable(name = "search") String searchString);
 }

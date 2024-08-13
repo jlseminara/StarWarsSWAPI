@@ -5,11 +5,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.net.URI;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -20,15 +18,17 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * A vehicle.
+ * A Starship
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-13T16:16:43.821372300+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
-public class Vehicle {
+public class Starship {
 
   private String name;
 
   private String model;
+
+  private String starshipClass;
 
   private String manufacturer;
 
@@ -42,15 +42,13 @@ public class Vehicle {
 
   private String maxAtmospheringSpeed;
 
-  private String cargoCapacity;
-
-  private String consumables;
-
   private String hyperdriveRating;
 
   private String MGLT;
 
-  private String starshipClassDoubleQuote;
+  private String cargoCapacity;
+
+  private String consumables;
 
   @Valid
   private List<URI> films = new ArrayList<>();
@@ -60,19 +58,17 @@ public class Vehicle {
 
   private URI url;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime created;
+  private String created;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime edited;
+  private String edited;
 
-  public Vehicle name(String name) {
+  public Starship name(String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * The name of this vehicle. The common name, such as Sand Crawler.
+   * The name of this starship. The common name, such as Death Star.
    * @return name
    */
   
@@ -85,13 +81,13 @@ public class Vehicle {
     this.name = name;
   }
 
-  public Vehicle model(String model) {
+  public Starship model(String model) {
     this.model = model;
     return this;
   }
 
   /**
-   * The model or official name of this vehicle. Such as All Terrain Attack Transport.
+   * The model or official name of this starship. Such as T-65 X-wing or DS-1 Orbital Battle Station.
    * @return model
    */
   
@@ -104,13 +100,32 @@ public class Vehicle {
     this.model = model;
   }
 
-  public Vehicle manufacturer(String manufacturer) {
+  public Starship starshipClass(String starshipClass) {
+    this.starshipClass = starshipClass;
+    return this;
+  }
+
+  /**
+   * The class of this starship, such as Starfighter or Deep Space Mobile Battlestation.
+   * @return starshipClass
+   */
+  
+  @JsonProperty("starship_class")
+  public String getStarshipClass() {
+    return starshipClass;
+  }
+
+  public void setStarshipClass(String starshipClass) {
+    this.starshipClass = starshipClass;
+  }
+
+  public Starship manufacturer(String manufacturer) {
     this.manufacturer = manufacturer;
     return this;
   }
 
   /**
-   * The manufacturer of this vehicle. Comma separated if more than one.
+   * The manufacturer of this starship. Comma seperated if more than one.
    * @return manufacturer
    */
   
@@ -123,13 +138,13 @@ public class Vehicle {
     this.manufacturer = manufacturer;
   }
 
-  public Vehicle costInCredits(String costInCredits) {
+  public Starship costInCredits(String costInCredits) {
     this.costInCredits = costInCredits;
     return this;
   }
 
   /**
-   * The cost of this vehicle new, in galactic credits.
+   * The cost of this starship new, in galactic credits.
    * @return costInCredits
    */
   
@@ -142,13 +157,13 @@ public class Vehicle {
     this.costInCredits = costInCredits;
   }
 
-  public Vehicle length(String length) {
+  public Starship length(String length) {
     this.length = length;
     return this;
   }
 
   /**
-   * The length of this vehicle in meters.
+   * The length of this starship in meters.
    * @return length
    */
   
@@ -161,13 +176,13 @@ public class Vehicle {
     this.length = length;
   }
 
-  public Vehicle crew(String crew) {
+  public Starship crew(String crew) {
     this.crew = crew;
     return this;
   }
 
   /**
-   * The number of personnel needed to run or pilot this vehicle.
+   * The number of personnel needed to run or pilot this starship.
    * @return crew
    */
   
@@ -180,13 +195,13 @@ public class Vehicle {
     this.crew = crew;
   }
 
-  public Vehicle passengers(String passengers) {
+  public Starship passengers(String passengers) {
     this.passengers = passengers;
     return this;
   }
 
   /**
-   * The number of non-essential people this vehicle can transport.
+   * The number of non-essential people this starship can transport.
    * @return passengers
    */
   
@@ -199,13 +214,13 @@ public class Vehicle {
     this.passengers = passengers;
   }
 
-  public Vehicle maxAtmospheringSpeed(String maxAtmospheringSpeed) {
+  public Starship maxAtmospheringSpeed(String maxAtmospheringSpeed) {
     this.maxAtmospheringSpeed = maxAtmospheringSpeed;
     return this;
   }
 
   /**
-   * The maximum speed of this vehicle in atmosphere.
+   * The maximum speed of this starship in atmosphere. n/a if this starship is incapable of atmosphering flight.
    * @return maxAtmospheringSpeed
    */
   
@@ -218,51 +233,13 @@ public class Vehicle {
     this.maxAtmospheringSpeed = maxAtmospheringSpeed;
   }
 
-  public Vehicle cargoCapacity(String cargoCapacity) {
-    this.cargoCapacity = cargoCapacity;
-    return this;
-  }
-
-  /**
-   * The maximum number of kilograms that this vehicle can transport.
-   * @return cargoCapacity
-   */
-  
-  @JsonProperty("cargo_capacity")
-  public String getCargoCapacity() {
-    return cargoCapacity;
-  }
-
-  public void setCargoCapacity(String cargoCapacity) {
-    this.cargoCapacity = cargoCapacity;
-  }
-
-  public Vehicle consumables(String consumables) {
-    this.consumables = consumables;
-    return this;
-  }
-
-  /**
-   * The maximum length of time that this vehicle can provide consumables for its entire crew without having to resupply.
-   * @return consumables
-   */
-  
-  @JsonProperty("consumables")
-  public String getConsumables() {
-    return consumables;
-  }
-
-  public void setConsumables(String consumables) {
-    this.consumables = consumables;
-  }
-
-  public Vehicle hyperdriveRating(String hyperdriveRating) {
+  public Starship hyperdriveRating(String hyperdriveRating) {
     this.hyperdriveRating = hyperdriveRating;
     return this;
   }
 
   /**
-   * Get hyperdriveRating
+   * The class of this starships hyperdrive.
    * @return hyperdriveRating
    */
   
@@ -275,13 +252,13 @@ public class Vehicle {
     this.hyperdriveRating = hyperdriveRating;
   }
 
-  public Vehicle MGLT(String MGLT) {
+  public Starship MGLT(String MGLT) {
     this.MGLT = MGLT;
     return this;
   }
 
   /**
-   * Get MGLT
+   * The Maximum number of Megalights this starship can travel in a standard hour. A Megalight is a standard unit of distance and has never been defined before within the Star Wars universe. This figure is only really useful for measuring the difference in speed of starships. We can assume it is similar to AU, the distance between our Sun (Sol) and Earth.
    * @return MGLT
    */
   
@@ -294,31 +271,50 @@ public class Vehicle {
     this.MGLT = MGLT;
   }
 
-  public Vehicle starshipClassDoubleQuote(String starshipClassDoubleQuote) {
-    this.starshipClassDoubleQuote = starshipClassDoubleQuote;
+  public Starship cargoCapacity(String cargoCapacity) {
+    this.cargoCapacity = cargoCapacity;
     return this;
   }
 
   /**
-   * Get starshipClassDoubleQuote
-   * @return starshipClassDoubleQuote
+   * The maximum number of kilograms that this starship can transport.
+   * @return cargoCapacity
    */
   
-  @JsonProperty("starship_class&quot;")
-  public String getStarshipClassDoubleQuote() {
-    return starshipClassDoubleQuote;
+  @JsonProperty("cargo_capacity")
+  public String getCargoCapacity() {
+    return cargoCapacity;
   }
 
-  public void setStarshipClassDoubleQuote(String starshipClassDoubleQuote) {
-    this.starshipClassDoubleQuote = starshipClassDoubleQuote;
+  public void setCargoCapacity(String cargoCapacity) {
+    this.cargoCapacity = cargoCapacity;
   }
 
-  public Vehicle films(List<URI> films) {
+  public Starship consumables(String consumables) {
+    this.consumables = consumables;
+    return this;
+  }
+
+  /**
+   * The maximum length of time that this starship can provide consumables for its entire crew without having to resupply.
+   * @return consumables
+   */
+  
+  @JsonProperty("consumables")
+  public String getConsumables() {
+    return consumables;
+  }
+
+  public void setConsumables(String consumables) {
+    this.consumables = consumables;
+  }
+
+  public Starship films(List<URI> films) {
     this.films = films;
     return this;
   }
 
-  public Vehicle addFilmsItem(URI filmsItem) {
+  public Starship addFilmsItem(URI filmsItem) {
     if (this.films == null) {
       this.films = new ArrayList<>();
     }
@@ -327,7 +323,7 @@ public class Vehicle {
   }
 
   /**
-   * An array of Film URL Resources that this vehicle has appeared in.
+   * An array of Film URL Resources that this starship has appeared in.
    * @return films
    */
   @Valid 
@@ -340,12 +336,12 @@ public class Vehicle {
     this.films = films;
   }
 
-  public Vehicle pilots(List<URI> pilots) {
+  public Starship pilots(List<URI> pilots) {
     this.pilots = pilots;
     return this;
   }
 
-  public Vehicle addPilotsItem(URI pilotsItem) {
+  public Starship addPilotsItem(URI pilotsItem) {
     if (this.pilots == null) {
       this.pilots = new ArrayList<>();
     }
@@ -354,7 +350,7 @@ public class Vehicle {
   }
 
   /**
-   * An array of People URL Resources that this vehicle has been piloted by.
+   * An array of People URL Resources that this starship has been piloted by.
    * @return pilots
    */
   @Valid 
@@ -367,7 +363,7 @@ public class Vehicle {
     this.pilots = pilots;
   }
 
-  public Vehicle url(URI url) {
+  public Starship url(URI url) {
     this.url = url;
     return this;
   }
@@ -386,7 +382,7 @@ public class Vehicle {
     this.url = url;
   }
 
-  public Vehicle created(OffsetDateTime created) {
+  public Starship created(String created) {
     this.created = created;
     return this;
   }
@@ -395,17 +391,17 @@ public class Vehicle {
    * The ISO 8601 date format of the time that this resource was created.
    * @return created
    */
-  @Valid 
+  
   @JsonProperty("created")
-  public OffsetDateTime getCreated() {
+  public String getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(String created) {
     this.created = created;
   }
 
-  public Vehicle edited(OffsetDateTime edited) {
+  public Starship edited(String edited) {
     this.edited = edited;
     return this;
   }
@@ -414,13 +410,13 @@ public class Vehicle {
    * the ISO 8601 date format of the time that this resource was edited.
    * @return edited
    */
-  @Valid 
+  
   @JsonProperty("edited")
-  public OffsetDateTime getEdited() {
+  public String getEdited() {
     return edited;
   }
 
-  public void setEdited(OffsetDateTime edited) {
+  public void setEdited(String edited) {
     this.edited = edited;
   }
 
@@ -432,49 +428,49 @@ public class Vehicle {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Vehicle vehicle = (Vehicle) o;
-    return Objects.equals(this.name, vehicle.name) &&
-        Objects.equals(this.model, vehicle.model) &&
-        Objects.equals(this.manufacturer, vehicle.manufacturer) &&
-        Objects.equals(this.costInCredits, vehicle.costInCredits) &&
-        Objects.equals(this.length, vehicle.length) &&
-        Objects.equals(this.crew, vehicle.crew) &&
-        Objects.equals(this.passengers, vehicle.passengers) &&
-        Objects.equals(this.maxAtmospheringSpeed, vehicle.maxAtmospheringSpeed) &&
-        Objects.equals(this.cargoCapacity, vehicle.cargoCapacity) &&
-        Objects.equals(this.consumables, vehicle.consumables) &&
-        Objects.equals(this.hyperdriveRating, vehicle.hyperdriveRating) &&
-        Objects.equals(this.MGLT, vehicle.MGLT) &&
-        Objects.equals(this.starshipClassDoubleQuote, vehicle.starshipClassDoubleQuote) &&
-        Objects.equals(this.films, vehicle.films) &&
-        Objects.equals(this.pilots, vehicle.pilots) &&
-        Objects.equals(this.url, vehicle.url) &&
-        Objects.equals(this.created, vehicle.created) &&
-        Objects.equals(this.edited, vehicle.edited);
+    Starship starship = (Starship) o;
+    return Objects.equals(this.name, starship.name) &&
+        Objects.equals(this.model, starship.model) &&
+        Objects.equals(this.starshipClass, starship.starshipClass) &&
+        Objects.equals(this.manufacturer, starship.manufacturer) &&
+        Objects.equals(this.costInCredits, starship.costInCredits) &&
+        Objects.equals(this.length, starship.length) &&
+        Objects.equals(this.crew, starship.crew) &&
+        Objects.equals(this.passengers, starship.passengers) &&
+        Objects.equals(this.maxAtmospheringSpeed, starship.maxAtmospheringSpeed) &&
+        Objects.equals(this.hyperdriveRating, starship.hyperdriveRating) &&
+        Objects.equals(this.MGLT, starship.MGLT) &&
+        Objects.equals(this.cargoCapacity, starship.cargoCapacity) &&
+        Objects.equals(this.consumables, starship.consumables) &&
+        Objects.equals(this.films, starship.films) &&
+        Objects.equals(this.pilots, starship.pilots) &&
+        Objects.equals(this.url, starship.url) &&
+        Objects.equals(this.created, starship.created) &&
+        Objects.equals(this.edited, starship.edited);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, model, manufacturer, costInCredits, length, crew, passengers, maxAtmospheringSpeed, cargoCapacity, consumables, hyperdriveRating, MGLT, starshipClassDoubleQuote, films, pilots, url, created, edited);
+    return Objects.hash(name, model, starshipClass, manufacturer, costInCredits, length, crew, passengers, maxAtmospheringSpeed, hyperdriveRating, MGLT, cargoCapacity, consumables, films, pilots, url, created, edited);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Vehicle {\n");
+    sb.append("class Starship {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    starshipClass: ").append(toIndentedString(starshipClass)).append("\n");
     sb.append("    manufacturer: ").append(toIndentedString(manufacturer)).append("\n");
     sb.append("    costInCredits: ").append(toIndentedString(costInCredits)).append("\n");
     sb.append("    length: ").append(toIndentedString(length)).append("\n");
     sb.append("    crew: ").append(toIndentedString(crew)).append("\n");
     sb.append("    passengers: ").append(toIndentedString(passengers)).append("\n");
     sb.append("    maxAtmospheringSpeed: ").append(toIndentedString(maxAtmospheringSpeed)).append("\n");
-    sb.append("    cargoCapacity: ").append(toIndentedString(cargoCapacity)).append("\n");
-    sb.append("    consumables: ").append(toIndentedString(consumables)).append("\n");
     sb.append("    hyperdriveRating: ").append(toIndentedString(hyperdriveRating)).append("\n");
     sb.append("    MGLT: ").append(toIndentedString(MGLT)).append("\n");
-    sb.append("    starshipClassDoubleQuote: ").append(toIndentedString(starshipClassDoubleQuote)).append("\n");
+    sb.append("    cargoCapacity: ").append(toIndentedString(cargoCapacity)).append("\n");
+    sb.append("    consumables: ").append(toIndentedString(consumables)).append("\n");
     sb.append("    films: ").append(toIndentedString(films)).append("\n");
     sb.append("    pilots: ").append(toIndentedString(pilots)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");

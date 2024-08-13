@@ -2,7 +2,7 @@ package com.diverger.starwars.domain;
 
 import java.net.URI;
 import java.util.Objects;
-import com.diverger.starwars.domain.People;
+import com.diverger.starwars.domain.Starship;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.net.URI;
@@ -19,11 +19,11 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * List of people returned
+ * List of vehicles returned
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-13T16:16:43.821372300+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
-public class PeopleSearchResult {
+public class StarshipSearchResult {
 
   private Integer count;
 
@@ -32,9 +32,9 @@ public class PeopleSearchResult {
   private URI previous;
 
   @Valid
-  private List<@Valid People> results = new ArrayList<>();
+  private List<@Valid Starship> results = new ArrayList<>();
 
-  public PeopleSearchResult count(Integer count) {
+  public StarshipSearchResult count(Integer count) {
     this.count = count;
     return this;
   }
@@ -53,7 +53,7 @@ public class PeopleSearchResult {
     this.count = count;
   }
 
-  public PeopleSearchResult next(URI next) {
+  public StarshipSearchResult next(URI next) {
     this.next = next;
     return this;
   }
@@ -72,7 +72,7 @@ public class PeopleSearchResult {
     this.next = next;
   }
 
-  public PeopleSearchResult previous(URI previous) {
+  public StarshipSearchResult previous(URI previous) {
     this.previous = previous;
     return this;
   }
@@ -91,12 +91,12 @@ public class PeopleSearchResult {
     this.previous = previous;
   }
 
-  public PeopleSearchResult results(List<@Valid People> results) {
+  public StarshipSearchResult results(List<@Valid Starship> results) {
     this.results = results;
     return this;
   }
 
-  public PeopleSearchResult addResultsItem(People resultsItem) {
+  public StarshipSearchResult addResultsItem(Starship resultsItem) {
     if (this.results == null) {
       this.results = new ArrayList<>();
     }
@@ -110,11 +110,11 @@ public class PeopleSearchResult {
    */
   @Valid 
   @JsonProperty("results")
-  public List<@Valid People> getResults() {
+  public List<@Valid Starship> getResults() {
     return results;
   }
 
-  public void setResults(List<@Valid People> results) {
+  public void setResults(List<@Valid Starship> results) {
     this.results = results;
   }
 
@@ -126,11 +126,11 @@ public class PeopleSearchResult {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PeopleSearchResult peopleSearchResult = (PeopleSearchResult) o;
-    return Objects.equals(this.count, peopleSearchResult.count) &&
-        Objects.equals(this.next, peopleSearchResult.next) &&
-        Objects.equals(this.previous, peopleSearchResult.previous) &&
-        Objects.equals(this.results, peopleSearchResult.results);
+    StarshipSearchResult starshipSearchResult = (StarshipSearchResult) o;
+    return Objects.equals(this.count, starshipSearchResult.count) &&
+        Objects.equals(this.next, starshipSearchResult.next) &&
+        Objects.equals(this.previous, starshipSearchResult.previous) &&
+        Objects.equals(this.results, starshipSearchResult.results);
   }
 
   @Override
@@ -141,7 +141,7 @@ public class PeopleSearchResult {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PeopleSearchResult {\n");
+    sb.append("class StarshipSearchResult {\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    next: ").append(toIndentedString(next)).append("\n");
     sb.append("    previous: ").append(toIndentedString(previous)).append("\n");
