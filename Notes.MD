@@ -14,13 +14,19 @@ Technical Decisions:
 	
 	Hexagonal: Basic, no further requirements. Models->UseCases->Infrastructure/
 
-    Resillience: Retry/CircuitBreaker/Bulkhead will be implemented by resilience4j if merits. 
+    Resillience: Retry + CircuitBreaker will be implemented by resilience4j. Bulkhead if merits via replicas in Deployment
+
+                 Rate limiter implmented in underlying SWAPI dev.
 
 	Test: Only Unit (Junit+Mockito). For integration playwright.dev will be used if required
 
 	Caches: internal in services (Use Case), not Redis required.
 
     HATEOAS: Not required
+	
+	Exceptions: wrapping all exceptions into meaningful domain exceptions. 
+	
+				Only one "Error" component returned in http response
 
 
 SWAPI:

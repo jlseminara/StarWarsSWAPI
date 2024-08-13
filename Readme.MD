@@ -1,4 +1,10 @@
 
+Technical Notes
+===============
+
+	- Refere to Notes.MD file
+
+
 Considerations
 ==============
 
@@ -17,7 +23,15 @@ Project
     - artifacts: <project_root>/build/lib
 
 
-Deployment:
+API Documentation
+=================
+
+		Swagger UI: <host>:<port>/swagger-ui/
+		
+		Api Doc: <host>:<port>/docs/
+
+
+Deployment
 ==========
 
     - docker: 

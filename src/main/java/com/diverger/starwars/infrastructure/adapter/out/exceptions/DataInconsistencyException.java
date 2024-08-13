@@ -1,4 +1,4 @@
-package com.diverger.starwars.infrastructure.adapter.in.exceptions;
+package com.diverger.starwars.infrastructure.adapter.out.exceptions;
 
 public class DataInconsistencyException extends RuntimeException {
 

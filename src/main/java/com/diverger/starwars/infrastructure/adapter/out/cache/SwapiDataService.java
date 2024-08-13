@@ -4,12 +4,13 @@ import com.diverger.starwars.domain.Film;
 import com.diverger.starwars.domain.PeopleSearchResult;
 import com.diverger.starwars.domain.Planet;
 import com.diverger.starwars.domain.Vehicle;
-import com.diverger.starwars.infrastructure.adapter.in.exceptions.FilmNotFoundException;
-import com.diverger.starwars.infrastructure.adapter.in.exceptions.PersonNotFoundException;
-import com.diverger.starwars.infrastructure.adapter.in.exceptions.PlanetNotFoundException;
-import com.diverger.starwars.infrastructure.adapter.in.exceptions.VehicleNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.out.exceptions.FilmNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.out.exceptions.PersonNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.out.exceptions.PlanetNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.out.exceptions.VehicleNotFoundException;
 import com.diverger.starwars.infrastructure.adapter.out.http.SwapiFeignClient;
 import com.diverger.starwars.infrastructure.port.out.cache.SwapiDataApi;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -33,12 +34,13 @@ public class SwapiDataService implements SwapiDataApi {
     }
 
     @Cacheable(cacheNames="FILMS", unless="#result == null")
+    @Retry(name = "General")
     public Film getFilmInformation(URI filmUri) {
         Film result;
 
         try {
             result = restClient.get().uri(filmUri).retrieve().toEntity(Film.class).getBody();
-        } catch (RuntimeException ex) {
+        } catch (RuntimeException ex) { //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
             log.error("Error fetching film message={}", ex.getMessage());
             throw new FilmNotFoundException(ex.getMessage());
         }
@@ -47,12 +49,13 @@ public class SwapiDataService implements SwapiDataApi {
     }
 
     @Cacheable(cacheNames="PLANETS", unless="#result == null")
+    @Retry(name = "General")
     public String getPlanetName(URI planetResource) {
         Planet result;
 
         try {
             result = restClient.get().uri(planetResource).retrieve().toEntity(Planet.class).getBody();
-        } catch (RuntimeException ex) {
+        } catch (RuntimeException ex) { //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
             log.error("Error fetching planet message={}", ex.getMessage());
             throw new PlanetNotFoundException(ex.getMessage());
         }
@@ -64,13 +67,14 @@ public class SwapiDataService implements SwapiDataApi {
     }
 
     @Cacheable(cacheNames="VEHICLES", unless="#result == null")
+    @Retry(name = "General")
     public Vehicle getVehicleInformation(URI vehicleUri) {
         Vehicle result;
 
         try {
             result = restClient.get().uri(vehicleUri).retrieve().toEntity(Vehicle.class).getBody();
-        } catch (RuntimeException ex) {
-            log.error("Error fetching person message={}", ex.getMessage());
+        } catch (RuntimeException ex) { //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
+            log.error("Error fetching vehicle message={}", ex.getMessage());
             throw new VehicleNotFoundException(ex.getMessage());
         }
 
@@ -78,12 +82,13 @@ public class SwapiDataService implements SwapiDataApi {
     }
 
     @Cacheable(cacheNames="PEOPLE", unless="#result == null")
+    @Retry(name = "General")
     public PeopleSearchResult findPerson(String name) {
         PeopleSearchResult result;
 
         try {
             result = swapiFeignClient.findPerson(name);
-        } catch (RuntimeException ex) {
+        } catch (RuntimeException ex) {     //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
             log.error("Error fetching person name={}, message={}", name, ex.getMessage());
             throw new PersonNotFoundException(ex.getMessage());
         }
@@ -115,4 +120,5 @@ public class SwapiDataService implements SwapiDataApi {
 
         return Optional.ofNullable(fastestVehicle);
     }
+
 }

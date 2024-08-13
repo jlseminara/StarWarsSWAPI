@@ -1,4 +1,4 @@
-package com.diverger.starwars.infrastructure.adapter.in.exceptions;
+package com.diverger.starwars.infrastructure.adapter.out.exceptions;
 
 import com.diverger.starwars.infrastructure.adapter.in.dto.ErrorResponse;
 import feign.FeignException;

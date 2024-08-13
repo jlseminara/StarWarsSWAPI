@@ -4,7 +4,7 @@ import com.diverger.starwars.domain.People;
 import com.diverger.starwars.domain.PeopleSearchResult;
 import com.diverger.starwars.infrastructure.adapter.out.cache.SwapiDataService;
 import com.diverger.starwars.infrastructure.adapter.in.dto.StarWarsPersonInformation;
-import com.diverger.starwars.infrastructure.adapter.in.exceptions.PersonNotFoundException;
+import com.diverger.starwars.infrastructure.adapter.out.exceptions.PersonNotFoundException;
 import com.diverger.starwars.usecase.interfaces.PersonInformationUseCaseApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
