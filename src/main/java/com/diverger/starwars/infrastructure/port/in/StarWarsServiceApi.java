@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-13T12:14:51.766674700+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-13T12:29:12.238277200+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 @Validated
 @Tag(name = "StarWarsService", description = "the StarWarsService API")
 public interface StarWarsServiceApi {

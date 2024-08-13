@@ -34,8 +34,30 @@ API Documentation
 Deployment
 ==========
 
-    - docker: 
+    - Health: <host>:<port>/actuator/health
 
-    - kubernetes:
+    - Docker: 
+                docker build -t swapi-service .
+                docker run -p 8080:8080 swapi-service
 
+    - Upload image to repo:
 
+                docker login
+                docker build -t swapi-service:latest .
+                docker tag swapi-service:latest <<REPO-NAME>>/swapi-service:latest
+                docker push <<REPO-NAME>>/swapi-service:latest
+
+    - Kubernetes:
+                WARNING:    Only tested locally with https://rancherdesktop.io/ 
+                            No namespace for deployment and changed port to 32000
+
+                1) Modify manifesto to point to proper <<REPO-NAME>>
+                2) kubectl apply -f deployment.yml
+
+                4) Check status:    kubectl get deployment
+                                    kubectl get pods
+
+                3) Test:    curl -get localhost:32000/actuator/health
+                            curl -get localhost:32000/swapi-proxy/person-info?name=han
+
+                4) Release resources: kubectl delete -f deployment.yml

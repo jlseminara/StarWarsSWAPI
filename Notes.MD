@@ -28,6 +28,8 @@ Technical Decisions:
 	
 				Only one "Error" component returned in http response
 
+     Cross-Origin Resource Sharing: added just in case
+
 
 SWAPI:
 ======
