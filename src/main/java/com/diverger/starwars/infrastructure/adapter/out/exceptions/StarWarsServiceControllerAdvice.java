@@ -53,36 +53,15 @@ public class StarWarsServiceControllerAdvice {
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(body);
     }
 
-    @ExceptionHandler(FilmNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleFilmNotFoundException(FilmNotFoundException ex) {
+    @ExceptionHandler(DataNotObtainableException.class)
+    public ResponseEntity<ErrorResponse> handleFilmNotFoundException(DataNotObtainableException ex) {
         var body = new ErrorResponse()
-                .status(HttpStatus.NOT_FOUND.value())
-                .title("Film not found")
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .title(ex.getField() + " cannot be obtained")
                 .detail(ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(body);
     }
-
-    @ExceptionHandler(PlanetNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handlePlanetNotFoundException(PlanetNotFoundException ex) {
-        var body = new ErrorResponse()
-                .status(HttpStatus.NOT_FOUND.value())
-                .title("Planet not found")
-                .detail(ex.getMessage());
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(body);
-    }
-
-    @ExceptionHandler(VehicleNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleVehicleNotFoundException(VehicleNotFoundException ex) {
-        var body = new ErrorResponse()
-                .status(HttpStatus.NOT_FOUND.value())
-                .title("Vehicle not found")
-                .detail(ex.getMessage());
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(body);
-    }
-
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleUnexpectedException(RuntimeException ex) {

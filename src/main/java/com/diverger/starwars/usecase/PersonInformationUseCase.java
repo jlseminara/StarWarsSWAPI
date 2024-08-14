@@ -40,7 +40,6 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
 
         //No specifications about what to do when receiving more that one result
         People personFound = findPersonResult.getResults().getFirst();
-
         personInfoResult.setName(personFound.getName());
         personInfoResult.setBirthYear(personFound.getBirthYear());
         personInfoResult.setGender(personFound.getGender());
@@ -86,23 +85,23 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
     }
 
     private Map<String, Double> getStarshipsInformation(List<URI> starshipUri) {
-        log.info("PersonInformationUserCase:getFastestStarship");
+        log.info("PersonInformationUserCase:getStarshipsInformation");
         Map<String, Double> starshipResult = new HashMap<>();
 
         if(starshipUri==null)
             return starshipResult;
 
         for(URI resource : starshipUri) {
-            var vehicle = swapiDataService.getStarshipInformation(resource);
-            if (vehicle != null)
-                starshipResult.put(vehicle.getName(), Double.parseDouble(vehicle.getMaxAtmospheringSpeed()));
+            var ship = swapiDataService.getStarshipInformation(resource);
+            if (ship != null)
+                starshipResult.put(ship.getName(), Double.parseDouble(ship.getMaxAtmospheringSpeed()));
         }
 
         return starshipResult;
     }
 
     private Map<String, Double> getVehiclesInformation(List<URI> vehiclesUri) {
-        log.info("PersonInformationUserCase:getFastestV");
+        log.info("PersonInformationUserCase:getVehiclesInformation");
         Map<String, Double> vehicleResult = new HashMap<>();
 
         if(vehiclesUri==null)
@@ -116,24 +115,5 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
 
         return vehicleResult;
     }
-
-    /*
-    private String getFastestVehicle(List<URI> vehiclesUri) {
-        log.info("PersonInformationUserCase:getFastestVehicle");
-        Map<String, Double> mapVehicles = new HashMap<>();
-
-        if(vehiclesUri==null || vehiclesUri.isEmpty())
-            return null;
-
-        for(URI resource : vehiclesUri) {
-            var vehicle = swapiDataService.getVehicleInformation(resource);
-            if (vehicle != null)
-                mapVehicles.put(vehicle.getName(), Double.parseDouble(vehicle.getMaxAtmospheringSpeed()));
-        }
-        var fastest = mapVehicles.entrySet().stream().max(Map.Entry.comparingByValue()).orElse(null);
-
-        return (fastest == null) ? null : fastest.getKey();
-    }
-    */
 
 }

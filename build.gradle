@@ -221,7 +221,10 @@ jacocoTestReport {
 	afterEvaluate {
 		classDirectories = files(classDirectories.files.collect {
 			fileTree(dir: it,
-					exclude: ["**/apimodel/**", "org/openapitools/api**", "com/lgt/aixigo/api**"])
+					exclude: ["com/diverger/starwars/infrastructure/adapter/out/exceptions**",
+							  "com/diverger/starwars/infrastructure/adapter/out/exceptions**",
+							  "com/diverger/starwars/configuration**",
+							  "com/diverger/starwars/domain**"])
 		})
 	}
 

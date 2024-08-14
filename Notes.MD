@@ -16,7 +16,7 @@ Technical Decisions:
 
     Resillience: Retry + CircuitBreaker will be implemented by resilience4j. Bulkhead if merits via replicas in Deployment
 
-                 Rate limiter implmented in underlying SWAPI dev.
+                 Rate limiter not needed implmented in underlying SWAPI dev website.
 
 	Test: Only Unit (Junit+Mockito). For integration playwright.dev will be used if required
 
@@ -24,11 +24,11 @@ Technical Decisions:
 
     HATEOAS: Not required
 	
-	Exceptions: wrapping all exceptions into meaningful domain exceptions. 
+	Exceptions: wrapping all exceptions into meaningful domain exceptions.
 	
 				Only one "Error" component returned in http response
 
-     Cross-Origin Resource Sharing: added just in case
+    Cross-Origin Resource Sharing: added just in case
 
 
 SWAPI:
@@ -65,7 +65,7 @@ Resources:
 Models:
 ======
 
-    Endpoint to get the schemas not available https://swapi.dev/api/<resource>/people/schema/
+    Endpoint to get the schemas not available https://swapi.dev/api/<resource>/schema/
     
     Derived from endpoint responses and compared against: https://github.com/phalt/swapi/tree/master/resources/schemas 
 

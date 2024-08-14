@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * List of films returned
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-13T16:16:43.821372300+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-14T18:04:26.420224800+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class FilmsSearchResult {
 
   private Integer count;

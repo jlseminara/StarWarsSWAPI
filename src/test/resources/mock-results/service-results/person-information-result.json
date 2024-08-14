@@ -1,0 +1,25 @@
+{
+  "name": "Luke Skywalker",
+  "birth_year": "19BBY",
+  "gender": "male",
+  "planet_name": "Tatooine",
+  "fastest_vehicle_driven": "X-wing",
+  "films": [
+    {
+      "name": "A New Hope",
+      "release_date": "1977-05-25"
+    },
+    {
+      "name": "The Empire Strikes Back",
+      "release_date": "1980-05-17"
+    },
+    {
+      "name": "Return of the Jedi",
+      "release_date": "1983-05-25"
+    },
+    {
+      "name": "Revenge of the Sith",
+      "release_date": "2005-05-19"
+    }
+  ]
+}

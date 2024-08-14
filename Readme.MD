@@ -18,9 +18,19 @@ Project
 
     - building: gradlew clean build
 
+    - fast build: (if model created previously) gradlew clean build -Pnoapibuild -x test 
+
     - running: gradlew bootRun
 
     - artifacts: <project_root>/build/lib
+
+QA Reports
+==========
+
+        - build/reports/jacoco/test/html
+		
+		
+		- if using SonarQube use:  build/jacoco/test.exec
 
 
 API Documentation
@@ -48,10 +58,13 @@ Deployment
                 docker push <<REPO-NAME>>/swapi-service:latest
 
     - Kubernetes:
+	
                 WARNING:    Only tested locally with https://rancherdesktop.io/ 
                             No namespace for deployment and changed port to 32000
 
+
                 1) Modify manifesto to point to proper <<REPO-NAME>>
+				
                 2) kubectl apply -f deployment.yml
 
                 4) Check status:    kubectl get deployment
@@ -61,3 +74,5 @@ Deployment
                             curl -get localhost:32000/swapi-proxy/person-info?name=han
 
                 4) Release resources: kubectl delete -f deployment.yml
+
+
