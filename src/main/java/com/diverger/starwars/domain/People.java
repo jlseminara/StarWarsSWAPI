@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * A person within the Star Wars universe
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-14T18:04:26.420224800+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-15T17:05:01.812324800+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class People {
 
   private String name;

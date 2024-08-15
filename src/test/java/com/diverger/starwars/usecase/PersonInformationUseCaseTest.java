@@ -7,6 +7,7 @@ import com.diverger.starwars.domain.Vehicle;
 import com.diverger.starwars.infrastructure.adapter.out.cache.SwapiDataService;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.DataNotObtainableException;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.PersonNotFoundException;
+import com.diverger.starwars.usecase.interfaces.PersonInformationUseCaseApi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
@@ -34,7 +35,7 @@ public class PersonInformationUseCaseTest {
     private SwapiDataService swapiDataService;
 
     @Autowired
-    private PersonInformationUseCase personInformationUseCase;
+    private PersonInformationUseCaseApi personInformationUseCase;
 
     @Test
     @DisplayName("Retrieve Person Information correctly")
@@ -98,6 +99,18 @@ public class PersonInformationUseCaseTest {
 
         assertNotNull(expectedException);
         assertInstanceOf(DataNotObtainableException.class, expectedException);
+    }
+
+    @Test
+    @DisplayName("Null find person result return Exception")
+    void failsNullFindPersonResultWithException() {
+        when(swapiDataService.findPerson(anyString())).thenReturn(null);
+
+        RuntimeException expectedException = Assertions.assertThrows(RuntimeException.class, () ->
+                personInformationUseCase.getPersonInformation("Some-search-string"));
+
+        assertNotNull(expectedException);
+        assertInstanceOf(PersonNotFoundException.class, expectedException);
     }
 
 

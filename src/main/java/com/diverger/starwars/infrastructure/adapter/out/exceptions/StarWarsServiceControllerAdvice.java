@@ -60,7 +60,7 @@ public class StarWarsServiceControllerAdvice {
                 .title(ex.getField() + " cannot be obtained")
                 .detail(ex.getMessage());
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(body);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(body);
     }
 
     @ExceptionHandler(RuntimeException.class)

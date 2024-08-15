@@ -2,9 +2,9 @@ package com.diverger.starwars.usecase;
 
 import com.diverger.starwars.domain.People;
 import com.diverger.starwars.domain.PeopleSearchResult;
-import com.diverger.starwars.infrastructure.adapter.out.cache.SwapiDataService;
 import com.diverger.starwars.infrastructure.adapter.in.dto.StarWarsPersonInformation;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.PersonNotFoundException;
+import com.diverger.starwars.infrastructure.port.out.cache.SwapiDataApi;
 import com.diverger.starwars.usecase.interfaces.PersonInformationUseCaseApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ import java.net.URI;
 @Service
 public class PersonInformationUseCase implements PersonInformationUseCaseApi {
 
-    private final SwapiDataService swapiDataService;
+    private final SwapiDataApi swapiDataService;
 
     @Autowired
-    public PersonInformationUseCase(SwapiDataService swapiDataService) {
+    public PersonInformationUseCase(SwapiDataApi swapiDataService) {
         this.swapiDataService = swapiDataService;
     }
 
@@ -52,9 +52,8 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
         return personInfoResult;
     }
 
-
     private List<FilmData> getFilmsComponent(List<URI> filmURIList) {
-        log.info("PersonInformationUserCase:getFilmsComponent");
+        log.info("PersonInformationUserCase:getFilmsComponent, url={}", filmURIList);
         List<FilmData> filmList = new ArrayList<>();
 
         if(filmURIList==null || filmURIList.isEmpty())
@@ -101,7 +100,7 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
     }
 
     private Map<String, Double> getVehiclesInformation(List<URI> vehiclesUri) {
-        log.info("PersonInformationUserCase:getVehiclesInformation");
+        log.info("PersonInformationUserCase:getVehiclesInformation, url={}", vehiclesUri);
         Map<String, Double> vehicleResult = new HashMap<>();
 
         if(vehiclesUri==null)

@@ -27,7 +27,7 @@ Project
 QA Reports
 ==========
 
-        - build/reports/jacoco/test/html
+        - build/reports/jacoco/test/html/index.html
 		
 		
 		- if using SonarQube use:  build/jacoco/test.exec

@@ -3,6 +3,7 @@ package com.diverger.starwars.infrastructure.adapter.in.http;
 import com.diverger.starwars.infrastructure.adapter.in.dto.StarWarsPersonInformation;
 import com.diverger.starwars.infrastructure.port.in.StarWarsServiceApi;
 import com.diverger.starwars.usecase.PersonInformationUseCase;
+import com.diverger.starwars.usecase.interfaces.PersonInformationUseCaseApi;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class PersonsInformationController implements StarWarsServiceApi {
 
-    private final PersonInformationUseCase personInformationUseCase;
+    private final PersonInformationUseCaseApi personInformationUseCase;
 
     @Autowired
-    public PersonsInformationController(PersonInformationUseCase personInformationUseCase) {
+    public PersonsInformationController(PersonInformationUseCaseApi personInformationUseCase) {
         this.personInformationUseCase = personInformationUseCase;
     }
 
-    @CircuitBreaker(name = "CircuitBreakerGeneral")
+    //@CircuitBreaker(name = "CircuitBreakerGeneral")
     @Override
     public ResponseEntity<StarWarsPersonInformation> getPersonInformation(String name) {
         log.info("PersonsInformationController::getPersonInformation - Request to get person information, name={}", name);

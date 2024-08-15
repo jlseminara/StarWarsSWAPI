@@ -6,8 +6,10 @@ import com.diverger.starwars.domain.Planet;
 import com.diverger.starwars.domain.Starship;
 import com.diverger.starwars.domain.Vehicle;
 import com.diverger.starwars.infrastructure.adapter.out.exceptions.DataNotObtainableException;
+import com.diverger.starwars.infrastructure.adapter.out.exceptions.PersonNotFoundException;
 import com.diverger.starwars.infrastructure.adapter.out.http.SwapiFeignClient;
 import com.diverger.starwars.infrastructure.port.out.cache.SwapiDataApi;
+import feign.FeignException;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
 
 
 @Slf4j
@@ -57,7 +57,7 @@ public class SwapiDataService implements SwapiDataApi {
             result = restClient.get().uri(planetResource).retrieve().toEntity(Planet.class).getBody();
         } catch (RuntimeException ex) { //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
             log.error("Error fetching planet message={}", ex.getMessage());
-            throw new DataNotObtainableException(ex.getMessage(), "Plane");
+            throw new DataNotObtainableException(ex.getMessage(), "Planet");
         }
 
         if(result==null || result.getName().isBlank())
@@ -98,7 +98,6 @@ public class SwapiDataService implements SwapiDataApi {
         return result;
     }
 
-
     @Override
     @Cacheable(cacheNames="PEOPLE", unless="#result == null")
     @Retry(name = "General")
@@ -107,37 +106,12 @@ public class SwapiDataService implements SwapiDataApi {
 
         try {
             result = swapiFeignClient.findPerson(name);
-        } catch (RuntimeException ex) {     //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
+        } catch (FeignException ex) {     //TODO: Bad practice to catch Runtime, better to refine them but this is Q&D
             log.error("Error fetching person name={}, message={}", name, ex.getMessage());
-            throw new DataNotObtainableException(ex.getMessage(), "Person");
+            throw new PersonNotFoundException(ex.getMessage());
         }
 
         return result;
-    }
-
-
-    //TODO: Borrar esto despues de las pruebas
-    @Deprecated
-    private Optional<String> getFastestVehicleOld(List<URI> vehiclesUri) {
-        String fastestVehicle = null;
-        double vehicleSpeed = 0;
-
-        if(vehiclesUri==null || vehiclesUri.isEmpty())
-            return Optional.empty();
-
-        for(URI resource : vehiclesUri) {
-            Vehicle vehicle = restClient.get().uri(resource).retrieve().toEntity(Vehicle.class).getBody();
-
-            if(vehicle!=null) {
-                double speed = Double.parseDouble(vehicle.getMaxAtmospheringSpeed());
-                if (speed > vehicleSpeed) {
-                    vehicleSpeed = speed;
-                    fastestVehicle = vehicle.getName();
-                }
-            }
-        }
-
-        return Optional.ofNullable(fastestVehicle);
     }
 
 }

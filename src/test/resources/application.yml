@@ -9,9 +9,7 @@ spring:
       client:
         swapi: https://swapi.dev/api
   cache:
-    type: caffeine
-    caffeine:
-      spec: maximumSize=500,expireAfterAccess=5m,initialCapacity=50
+    type: none
 
 springdoc:
   swagger-ui:
