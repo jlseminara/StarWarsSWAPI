@@ -24,6 +24,16 @@ Project
 
     - artifacts: <project_root>/build/lib
 
+
+
+Integration Test
+================
+
+            1) compile: gradlew clean build
+
+            2) execute: gradlew cucumber
+
+
 QA Reports
 ==========
 
