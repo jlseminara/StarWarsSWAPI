@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * List of people returned
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-16T03:14:59.448348500+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-16T16:40:28.350912800+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class PeopleSearchResult {
 
   private Integer count;

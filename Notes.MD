@@ -36,7 +36,9 @@ SWAPI:
 
 	- https://swapi.dev/
 	- Rate limiting is done via IP address and is currently limited to 10,000 API request per day
-	- Schemas:  <URL>/api/<resource>/schema
+	
+    [NOT WORKING]
+    - Schemas:  <URL>/api/<resource>/schema
 
 
 Resources:

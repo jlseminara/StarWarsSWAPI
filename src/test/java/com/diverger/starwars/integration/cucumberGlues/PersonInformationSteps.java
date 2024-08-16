@@ -17,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 
 @CucumberContextConfiguration
@@ -47,10 +49,13 @@ public class PersonInformationSteps {
     public void whenISpecifyTheName(String name) {
         httpException = null;
         obtainedResponse = null;
+        String encodedName;
+
+        encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8);
 
         try {
             obtainedResponse = restTemplate.exchange("http://localhost:" + port +
-                    "/swapi-proxy/person-info?name=" + name, HttpMethod.GET, null, StarWarsPersonInformation.class);
+                    "/swapi-proxy/person-info?name=" + encodedName, HttpMethod.GET, null, StarWarsPersonInformation.class);
         } catch (HttpClientErrorException ex) {
             httpException = ex;
         }
