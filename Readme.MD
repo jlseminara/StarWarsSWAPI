@@ -37,9 +37,10 @@ Integration Test
 QA Reports
 ==========
 
-        - build/reports/jacoco/test/html/index.html
-		
-		
+        - Static Analysis: build/spotbugs-report/spotbugs.html
+
+        - Test Coverage Report: build/jacoco-reports/index.html
+
 		- if using SonarQube use:  build/jacoco/test.exec
 
 

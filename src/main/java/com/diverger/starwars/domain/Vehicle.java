@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * A vehicle.
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-16T16:40:28.350912800+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-03T22:52:34.818461100+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class Vehicle {
 
   private String name;
