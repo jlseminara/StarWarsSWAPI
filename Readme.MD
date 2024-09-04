@@ -74,7 +74,7 @@ Deployment
                             No namespace for deployment and changed port to 32000
 
 
-                1) Modify manifesto to point to proper <<REPO-NAME>>
+                1) Modify manifesto to point to proper <<REPO-NAME>>:  ./deployment/deployment.yml
 				
                 2) kubectl apply -f deployment.yml
 

@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * StarWarsPersonInformation
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-03T22:52:34.664751+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-04T23:13:54.244409300+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class StarWarsPersonInformation {
 
   private String name;

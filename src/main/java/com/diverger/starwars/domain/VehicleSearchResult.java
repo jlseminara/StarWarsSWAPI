@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * List of vehicles returned
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-03T22:52:34.818461100+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-04T23:03:01.403283400+02:00[Europe/Paris]", comments = "Generator version: 7.7.0")
 public class VehicleSearchResult {
 
   private Integer count;

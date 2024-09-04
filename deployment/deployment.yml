@@ -1,3 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: swapi-configmap
+  #namespace: default
+data:
+  spring.cloud.openfeign.client.swapi.default: "https://swapi.dev/api"
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,6 +27,12 @@ spec:
       containers:
       - name: swapi-container
         image: jlseminara/swapi-service:latest
+        env:
+          - name: swapi-url
+            valueFrom:
+              configMapKeyRef:
+                name: swapi-configmap
+                key: spring.cloud.openfeign.client.swapi.default
         ports:
         - containerPort: 8080
       restartPolicy: Always

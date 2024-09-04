@@ -7,7 +7,9 @@ spring:
   cloud:
     openfeign:
       client:
-        swapi: https://swapi.dev/api
+        swapi:
+          url: https://swapi.dev/api
+          default: https://swapi.dev/api
   cache:
     type: none
 
