@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient(name = "FacadeSwapiConsumer", url = "${spring.cloud.openfeign.client.swapi}")
+@FeignClient(name = "FacadeSwapiConsumer", url = "${spring.cloud.openfeign.client.swapi.url}")
 public interface SwapiFeignClient {
 
     @GetMapping(value = "/people/{personId}")

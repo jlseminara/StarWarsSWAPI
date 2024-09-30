@@ -24,12 +24,23 @@ Project
 
     - artifacts: <project_root>/build/lib
 
+
+
+Integration Test
+================
+
+            1) compile: gradlew clean build
+
+            2) execute: gradlew cucumber
+
+
 QA Reports
 ==========
 
-        - build/reports/jacoco/test/html/index.html
-		
-		
+        - Static Analysis: build/spotbugs-report/spotbugs.html
+
+        - Test Coverage Report: build/jacoco-reports/index.html
+
 		- if using SonarQube use:  build/jacoco/test.exec
 
 
@@ -63,7 +74,7 @@ Deployment
                             No namespace for deployment and changed port to 32000
 
 
-                1) Modify manifesto to point to proper <<REPO-NAME>>
+                1) Modify manifesto to point to proper <<REPO-NAME>>:  ./deployment/deployment.yml
 				
                 2) kubectl apply -f deployment.yml
 

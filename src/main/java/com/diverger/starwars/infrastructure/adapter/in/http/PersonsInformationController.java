@@ -24,7 +24,7 @@ public class PersonsInformationController implements StarWarsServiceApi {
         this.personInformationUseCase = personInformationUseCase;
     }
 
-    //@CircuitBreaker(name = "CircuitBreakerGeneral")
+    @CircuitBreaker(name = "CircuitBreakerGeneral")
     @Override
     public ResponseEntity<StarWarsPersonInformation> getPersonInformation(String name) {
         log.info("PersonsInformationController::getPersonInformation - Request to get person information, name={}", name);

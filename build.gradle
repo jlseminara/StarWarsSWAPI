@@ -8,6 +8,8 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'org.openapi.generator' version '7.7.0'
 	id 'jacoco'
+	id "se.thinkcode.cucumber-runner" version "0.0.11"
+	id "com.github.spotbugs" version "6.0.21"
 }
 
 group = 'com.diverger'
@@ -21,6 +23,7 @@ java {
 
 repositories {
 	mavenCentral()
+	gradlePluginPortal()
 }
 
 configurations {		//Tenia una dependencia duplicada, dos proveedores de log service
@@ -30,6 +33,11 @@ configurations {		//Tenia una dependencia duplicada, dos proveedores de log serv
 
 configurations {
 	openapi
+}
+
+cucumber {
+	glue = 'classpath:com.diverger.starwars.integration.cucumberGlues'
+	featurePath = 'src/test/resources/features'
 }
 
 dependencies {
@@ -58,8 +66,14 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '3.3.2'
 	implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '3.1.8'
 	implementation group: 'io.github.resilience4j', name: 'resilience4j-spring-boot3', version: '2.2.0'
-}
 
+	testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.11.0'
+	testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-api', version: '1.11.0'
+
+	testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.18.1'
+	implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.18.1'
+	implementation group: 'io.cucumber', name: 'cucumber-spring', version: '7.18.1'
+}
 
 openApiGenerate {
 	generatorName.set("spring")
@@ -177,9 +191,6 @@ openApiGenerate {
 
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
 
 if (!project.hasProperty('noapibuild')) {
 	tasks.compileJava.dependsOn([
@@ -188,7 +199,6 @@ if (!project.hasProperty('noapibuild')) {
 			"Swapi-dev-models"
 	])
 }
-
 
 tasks.named('bootBuildImage') {
 	builder = 'paketobuildpacks/builder-jammy-base:latest'
@@ -210,12 +220,16 @@ tasks.named('jar') {
 test {
 	finalizedBy jacocoTestReport // report is always generated after tests run
 }
+
 jacocoTestReport {
 	dependsOn test // tests are required to run before generating the report
+
 	reports {
 		xml.required = true
 		csv.required = false
 		html.required = true
+
+		html.outputLocation = file("$projectDir/build/jacoco-reports/")
 	}
 
 	afterEvaluate {
@@ -227,5 +241,17 @@ jacocoTestReport {
 							  "com/diverger/starwars/domain**"])
 		})
 	}
+}
 
+tasks.spotbugsTest.enabled = false
+
+tasks.spotbugsMain {
+	reports.create("html") {
+		required = true
+		showStackTraces = false
+		outputLocation = file("$projectDir/build/spotbugs-report/spotbugs.html")
+		setStylesheet("fancy-hist.xsl")
+		ignoreFailures = true
+		excludeFilter = file("SpotbugsExcludeFilter.xml")
+	}
 }

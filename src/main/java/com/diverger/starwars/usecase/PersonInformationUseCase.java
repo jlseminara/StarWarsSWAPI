@@ -38,7 +38,7 @@ public class PersonInformationUseCase implements PersonInformationUseCaseApi {
         if(findPersonResult==null || findPersonResult.getCount()==0)
             throw new PersonNotFoundException("Person with name '" +name+ "' cannot be found");
 
-        //No specifications about what to do when receiving more that one result
+        //No specifications about what to do when receiving more than one result
         People personFound = findPersonResult.getResults().getFirst();
         personInfoResult.setName(personFound.getName());
         personInfoResult.setBirthYear(personFound.getBirthYear());
